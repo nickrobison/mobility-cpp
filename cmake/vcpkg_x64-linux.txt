@@ -1,0 +1,5 @@
+--triplet
+x64-linux
+arrow[parquet]
+hpx
+gdal

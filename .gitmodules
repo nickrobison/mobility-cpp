@@ -19,3 +19,6 @@
 [submodule "extern/sanitizers-cmake"]
 	path = extern/sanitizers-cmake
 	url = ../../arsenm/sanitizers-cmake.git
+[submodule "extern/vcpkg"]
+	path = extern/vcpkg
+	url = ../../microsoft/vcpkg.git
