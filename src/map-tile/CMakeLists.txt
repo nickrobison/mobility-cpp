@@ -2,7 +2,7 @@
 find_package (Eigen3 3.3 NO_MODULE)
 
 
-add_library(map-tile include/map-tile/server/MapTileServer.hpp src/FileProvider.cpp src/FileProvider.hpp include/map-tile/ctx/Context.hpp include/map-tile/client/MapTileClient.hpp src/coordinates/LocaleLocator.cpp include/map-tile/coordinates/LocaleLocator.hpp src/coordinates/Coordinate2D.cpp include/map-tile/coordinates/Coordinate2D.hpp src/coordinates/LocaleTiler.cpp src/coordinates/LocaleTiler.hpp)
+add_library(map-tile include/map-tile/server/MapTileServer.hpp src/FileProvider.cpp src/FileProvider.hpp include/map-tile/ctx/Context.hpp include/map-tile/client/MapTileClient.hpp src/coordinates/LocaleLocator.cpp include/map-tile/coordinates/LocaleLocator.hpp src/coordinates/Coordinate2D.cpp include/map-tile/coordinates/Coordinate2D.hpp src/coordinates/LocaleTiler.cpp include/map-tile/coordinates/LocaleTiler.hpp)
 
 target_link_libraries(map-tile PUBLIC HPX::hpx INTERFACE spdlog PRIVATE Boost::iostreams io shared)
 target_include_directories(map-tile PUBLIC
