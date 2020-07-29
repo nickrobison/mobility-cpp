@@ -32,8 +32,6 @@ find_package(Sanitizers)
 
 # Disable GTest dependency, since we use Catch
 set(BENCHMARK_ENABLE_TESTING OFF)
-#Set options for Blaze Library
-set(BLAZE_SMP_THREADS HPX)
 set(BLAZE_USE_VECTORIZATION TRUE)
 
 # Set the default malloc implementation
@@ -41,7 +39,13 @@ set(DEFAULT_MALLOC "system" CACHE STRING "Set the default memory allocator")
 set_property(CACHE DEFAULT_MALLOC PROPERTY STRINGS "system;tcmalloc")
 
 # Whether or not we should build HPX ourselves
-set(USE_INTERNAL_HPX OFF CACHE BOOL "Build1 the bundled version of HPX")
+set(USE_INTERNAL_HPX OFF CACHE BOOL "Build the bundled version of HPX")
+set(USE_INTERNAL_HDF5 OFF CACHE BOOL "Build the bundled version of HDF5")
+
+if (NOT ${USE_INTERNAL_HPX})
+    #Set options for Blaze Library
+    set(BLAZE_SMP_THREADS HPX)
+endif ()
 
 enable_testing()
 
@@ -55,6 +59,10 @@ add_subdirectory(extern/date)
 if (${USE_INTERNAL_HPX})
     set(HPX_USE_CMAKE_CXX_STANDARD ON CACHE BOOL "")
     add_subdirectory(extern/hpx)
+endif ()
+
+if (${USE_INTERNAL_HDF5})
+    add_subdirectory(extern/hdf5)
 endif ()
 
 add_subdirectory(benchmarks)

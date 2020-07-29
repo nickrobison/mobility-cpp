@@ -19,9 +19,6 @@ jobs:
 
       - uses: lukka/get-cmake@latest
 
-      - name: Install system packages
-        run: sudo apt-get install libtool libtool-bin
-
       - name: Set vcpkg's response file path used as part of cache's key.
         uses: lukka/set-shell-env@master
         with:
@@ -42,6 +39,6 @@ jobs:
         with:
           cmakeListsTxtPath: '${{ github.workspace }}/CMakeLists.txt'
           useVcpkgToolchainFile: true
-          buildWithCMakeArgs: '-- -v -DUSE_INTERNAL_HPX=ON'
+          buildWithCMakeArgs: '-- -v -DUSE_INTERNAL_HPX=ON -DUSE_INTERNAL_HDF5=ON'
       - name: Prints output of run-vcpkg's task
         run: echo "root='${{ steps.runvcpkg.outputs.RUNVCPKG_VCPKG_ROOT_OUT }}', triplet='${{ steps.runvcpkg.outputs.RUNVCPKG_VCPKG_TRIPLET_OUT }}' "
