@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.0.0)
 # ##############################################################################
 # Build type (needs to be handled before project command below)
 # ##############################################################################
-if(NOT CMAKE_BUILD_TYPE)
+if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE
             "Release"
             CACHE
@@ -11,7 +11,7 @@ if(NOT CMAKE_BUILD_TYPE)
             "Configuration type (one of Debug, RelWithDebInfo, Release, MinSizeRel)"
             FORCE
             )
-endif()
+endif ()
 
 project(mobility-cpp VERSION 0.1.0 LANGUAGES CXX)
 
@@ -23,10 +23,10 @@ set(RELEASE_FLAGS, "-O3")
 
 include(CheckCXXCompilerFlag)
 CHECK_CXX_COMPILER_FLAG("-march=native" COMPILER_SUPPORTS_MARCH_NATIVE)
-if(COMPILER_SUPPORTS_MARCH_NATIVE)
+if (COMPILER_SUPPORTS_MARCH_NATIVE)
     set(RELEASE_FLAGS ${RELEASE_FLAGS} "-march=native")
     set(DEBUG_FLAGS ${DEBUG_FLAGS} "-march=native")
-endif()
+endif ()
 
 find_package(Sanitizers)
 
@@ -40,6 +40,9 @@ set(BLAZE_USE_VECTORIZATION TRUE)
 set(DEFAULT_MALLOC "system" CACHE STRING "Set the default memory allocator")
 set_property(CACHE DEFAULT_MALLOC PROPERTY STRINGS "system;tcmalloc")
 
+# Whether or not we should build HPX ourselves
+set(USE_INTERNAL_HPX OFF CACHE BOOL "Build1 the bundled version of HPX")
+
 enable_testing()
 
 add_subdirectory(extern/spdlog)
@@ -49,6 +52,11 @@ add_subdirectory(extern/blaze)
 add_subdirectory(extern/abseil)
 add_subdirectory(extern/date)
 
+if (${USE_INTERNAL_HPX})
+    set(HPX_USE_CMAKE_CXX_STANDARD ON CACHE BOOL "")
+    add_subdirectory(extern/hpx)
+endif ()
+
 add_subdirectory(benchmarks)
 add_subdirectory(tests)
 add_subdirectory(locales)
@@ -57,4 +65,7 @@ add_subdirectory(src)
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)
+
+# Custom target
+add_custom_target(applications DEPENDS connectivity distance locales)
 
