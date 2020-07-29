@@ -19,6 +19,9 @@ jobs:
 
       - uses: lukka/get-cmake@latest
 
+      - name: Install system packages
+        run: sudo apt-get install libtool libtool-bin
+
       - name: Set vcpkg's response file path used as part of cache's key.
         uses: lukka/set-shell-env@master
         with:
