@@ -1,5 +1,5 @@
 --triplet
-x64-linux
+x64-osx
 arrow[parquet]
 hwloc
 boost-accumulators
