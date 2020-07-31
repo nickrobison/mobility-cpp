@@ -57,11 +57,13 @@ add_subdirectory(extern/abseil)
 add_subdirectory(extern/date)
 
 if (${USE_INTERNAL_HPX})
+    message("Using internal HPX")
     set(HPX_USE_CMAKE_CXX_STANDARD ON CACHE BOOL "")
     add_subdirectory(extern/hpx)
 endif ()
 
-if (${USE_INTERNAL_HDF5})
+if (${USE_INTERNAL_HDF5})i
+    message("Using internal HDF5")
     add_subdirectory(extern/hdf5)
 endif ()
 
