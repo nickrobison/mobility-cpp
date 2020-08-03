@@ -37,7 +37,7 @@ jobs:
         uses: lukka/run-cmake@v2
         id: runcmake
         with:
-          cmakeListsTxtPath: '${{ github.workspace }}/CMakeLists.txt'
+          cmakeListsOrSettingsJson: "CMakeListsTxtAdvanced"
           useVcpkgToolchainFile: true
           buildDirectory: '${{ github.workspace }}/build/'
           cmakeAppendedArgs: '-GNinja -DUSE_INTERNAL_HPX=ON -DUSE_INTERNAL_HDF5=ON'

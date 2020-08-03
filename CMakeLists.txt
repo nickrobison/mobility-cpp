@@ -62,7 +62,7 @@ if (${USE_INTERNAL_HPX})
     add_subdirectory(extern/hpx)
 endif ()
 
-if (${USE_INTERNAL_HDF5})i
+if (${USE_INTERNAL_HDF5})
     message("Using internal HDF5")
     add_subdirectory(extern/hdf5)
 endif ()
