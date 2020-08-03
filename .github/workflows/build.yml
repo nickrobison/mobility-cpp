@@ -32,14 +32,14 @@ jobs:
           vcpkgDirectory: '${{ github.workspace }}/extern/vcpkg'
           # Ensure the cache key changes any time the content of the response file changes.
           appendedCacheKey: ${{ hashFiles( env.VCPKGRESPONSEFILE ) }}
-
-      - name: Run CMake with Ninja
-        uses: lukka/run-cmake@v2
-        id: runcmake
-        with:
-          cmakeListsOrSettingsJson: "CMakeListsTxtAdvanced"
-          useVcpkgToolchainFile: true
-          buildDirectory: '${{ github.workspace }}/build/'
-          cmakeAppendedArgs: '-GNinja -DUSE_INTERNAL_HPX=ON -DUSE_INTERNAL_HDF5=ON'
-      - name: Prints output of run-vcpkg's task
-        run: echo "root='${{ steps.runvcpkg.outputs.RUNVCPKG_VCPKG_ROOT_OUT }}', triplet='${{ steps.runvcpkg.outputs.RUNVCPKG_VCPKG_TRIPLET_OUT }}' "
+#
+#      - name: Run CMake with Ninja
+#        uses: lukka/run-cmake@v2
+#        id: runcmake
+#        with:
+#          cmakeListsOrSettingsJson: "CMakeListsTxtAdvanced"
+#          useVcpkgToolchainFile: true
+#          buildDirectory: '${{ github.workspace }}/build/'
+#          cmakeAppendedArgs: '-GNinja -DUSE_INTERNAL_HPX=ON -DUSE_INTERNAL_HDF5=ON'
+#      - name: Prints output of run-vcpkg's task
+#        run: echo "root='${{ steps.runvcpkg.outputs.RUNVCPKG_VCPKG_ROOT_OUT }}', triplet='${{ steps.runvcpkg.outputs.RUNVCPKG_VCPKG_TRIPLET_OUT }}' "
