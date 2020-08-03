@@ -59,7 +59,7 @@ add_subdirectory(extern/date)
 if (${USE_INTERNAL_HPX})
     message("Using internal HPX")
     set(HPX_USE_CMAKE_CXX_STANDARD ON CACHE BOOL "")
-    set(HPX_USE_MALLOC "system")
+    set(HPX_WITH_MALLOC "system")
     add_subdirectory(extern/hpx)
 endif ()
 
