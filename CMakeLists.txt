@@ -61,7 +61,7 @@ endif ()
 set(USE_METAL OFF CACHE BOOL "Enable Apple Metal support")
 
 if (${USE_METAL})
-    message(INFO "Enabling Apple Metal support")
+    message(STATUS "Enabling Apple Metal support")
     add_compile_definitions(USE_METAL)
 endif ()
 
